@@ -1,0 +1,96 @@
+body {
+  font-family: sans-serif;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  background-color: #F8F6F8;
+  color: #979597;
+  align-items: center;
+  font-weight: lighter;
+}
+
+h3 {
+  margin-left: 30px;
+}
+
+button {
+  margin-left: 55px;
+  text-decoration: none;
+  border: none;
+  background-color: #F8F6F8;
+  font-size: 15px;
+  color: #979597;
+}
+
+button span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.s {
+  margin-left: 55px;
+  height: 25px;
+  width: 150px;
+}
+
+.posts {
+  background-color: #F8F6F8;
+  display: flex;
+  flex-direction: row;
+  max-width: 90%;
+  margin: auto;
+  border: 1px solid #979597;
+  border-radius: 2px;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+#title, #author, #image, #description {
+  margin-bottom: 15px;
+  height: 25px;
+}
+
+.sub {
+  width: 150px;
+  font-size: 15px;
+  text-decoration: none;
+  border: none;
+}
+
+img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.t {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #696666;
+}
+
+.w {
+  display: flex;
+  flex-direction: column;
+}
+
+.a {
+  align-self: flex-end;
+  color: #979597;
+}
+
+.d {
+  color: #979597;
+  margin-left: 10px;
+}

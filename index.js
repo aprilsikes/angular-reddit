@@ -1,37 +1,92 @@
-var app = angular.module('april', []);
+var app = angular.module('april', ['angularMoment']);
 
 app.controller('MyController', function ($scope) {
   $scope.posts = [];
-  // $scope.rate = 100;
   $scope.showForm = false;
-  // $scope.buttonValue = 'Add a contractor';
+  $scope.showNew = false;
+  $scope.buttonValue = '0 comments';
+  $scope.orderProp = 'title';
+  $scope.sortReverse  = false;
+  // $scope.showNew = {};
+  console.log($scope);
+
+  $scope.upVote = function(post){
+    post.votes++;
+    post.votes.push(this.vote);
+  };
+  $scope.downVote = function(post){
+    post.votes--;
+    post.votes.push(this.vote);
+  };
 
   $scope.toggleForm = function () {
     $scope.showForm = !$scope.showForm;
   }
+
+  $scope.toggleComments = function (post) {
+    this.showComments = !this.showComments;
+  }
+
+  $scope.toggleCommentForm = function (post) {
+    this.showNew = !this.showNew;
+  }
+
   $scope.addPost = function () {
     var post = {};
+    post.message = {
+      time: new Date()
+    };
+    post.image = $scope.image;
     post.title = $scope.title;
     post.author = $scope.author;
-    post.image = $scope.image;
     post.description = $scope.description;
+    post.comments = [];
+    post.votes = 0;
+    if (post.votes > 0) {
+      color: green;
+    } else if (post.votes < 0) {
+      color: red;
+    }
     $scope.posts.push(post);
     console.log($scope.posts);
+    this.showComments = false;
+    post.showNew = false;
     $scope.toggleForm();
+    $scope.toggleComments();
     $scope.title = null;
     $scope.author = null;
     $scope.image = null;
     $scope.description = null;
-
-    // if ($scope.contractors.length > 3) {
-    //   $scope.buttonValue = 'Really???';
-    // } else if ($scope.contractors.length > 0) {
-    //   $scope.buttonValue = 'Add another contractor';
-    // }
-
   }
 
+  $scope.addComment = function (post, author, text) {
+    var comment = {};
+    post.comments.author = this.author;
+    post.comments.text = this.text;
+    post.comments.push(this.comment);
+    console.log(post.comments);
+    this.showComments = false;
+    this.toggleCommentForm();
+    this.toggleComments();
+    // $scope.author = null;
+    // $scope.text = null;
+    // this.comment = {};
+    if (post.comments.length > 1) {
+      this.buttonValue = post.comments.length+ ' comments';
+    } else if (post.comments.length == 1) {
+      this.buttonValue = post.comments.length+ ' comment';
+    }
+  }
+
+
+
 })
+
+// NOTES:
+// use "this" to control scope (access the specific posts and comments you want)
+// in forms, use dot notation to create your post and comment objects on the scope
+
+
 
 // angular.module('timeApp', ['angularMoment']);
 //
@@ -45,6 +100,3 @@ app.controller('MyController', function ($scope) {
 //   vm.time = new Date();
 //
 // });
-
-
-// Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

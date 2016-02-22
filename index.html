@@ -5,11 +5,12 @@
     <title>Reddit Clone App</title>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js'>
     </script>
-    <script type="text/javascript" src='index.js'>
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script src="http://code.angularjs.org/1.1.5/angular.js"></script>
+    <script type="text/javascript" src='index.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
     <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
   <body ng-controller='MyController'>
 
@@ -18,14 +19,33 @@
       <p>
         <button ng-click='toggleForm()'><span>&#43</span> Submit Post</button>
       </p>
-
       <p>
-        <input type="text" ng-model='searchable.name' placeholder="Search" class='s'>
+        <input type="search" ng-model='searchable' placeholder="Search" class='s'>
       </p>
+        <select ng-model='orderProp'>
+          <option value='title' ng-click="orderProp == 'title'">
+            <!-- <a href="#" ng-click="orderProp == 'title'"> -->
+              Sort By Title
+              <!-- <span ng-show="sortType == 'title'" class="fa fa-caret-down"></span> -->
+            <!-- </a> -->
+          </option>
+          <option value='date' ng-click="orderProp == 'date'">
+            <!-- <a href="#" ng-click="orderProp == 'date'"> -->
+              Sort By Date
+              <!-- <span ng-show="sortType == 'date'" class="fa fa-caret-down"></span> -->
+            <!-- </a> -->
+          </option>
+          <option value='vote' ng-click="orderProp == 'votes'">
+            <!-- <a href="#" ng-click="orderProp == 'votes'"> -->
+              Sort By Vote
+              <!-- <span ng-show="sortType == 'vote'" class="fa fa-caret-down"></span> -->
+            <!-- </a> -->
+          </option>
+        </select>
     </div>
 
     <div ng-show='showForm'>
-      <form name='form' ng-submit='addPost()'>
+      <form name='form1' ng-submit='addPost()'>
         <label for="title">Title</label>
           <input type="text" id='title' ng-model='title' placeholder="Title" required="">
         <label for="author">Author</label>
@@ -38,25 +58,62 @@
       </form>
     </div>
 
-    <p>
-      <div ng-repeat='post in posts | filter:searchable' class="posts">
-        <p>
-          <img ng-src="{{post.image}}"/>
-        </p>
+    <div class="example-animate-container">
+      <div ng-animate="'animate'" id='posts' ng-repeat='post in posts | orderBy:orderProp:sortReverse | filter:searchable'>
+        <img ng-src="{{post.image}}"/>
         <div class="w">
-          <p class='t'>
-            {{post.title}} |
-          </p>
+          <div class="votes">
+            <p class='t'>
+              {{post.title}} &#124
+            </p>
+            <button class="votingButton" ng-click="upVote(post)">
+              <i class="fa fa-arrow-up"></i>
+            </button>
+            <button class="votingButton" ng-click="downVote(post)">
+              <i class="fa fa-arrow-down"></i>
+            </button>
+            <div class="badge badge-inverse">
+              <div>{{post.votes}}</div>
+            </div>
+          </div>
           <p class='a'>
             By {{post.author}}
           </p>
           <p class='d'>
             {{post.description}}
           </p>
-          <!-- <time>{{ main.time | amCalendar }}</time> -->
+          <div class="date">
+            <span class='time'>
+              <i class="fa fa-calendar"></i> {{post.message.time | amCalendar}}
+            </span>
+            <p>
+              <button id='comm' ng-click='toggleComments(post)'> |  <i class='fa fa-comment'></i> {{buttonValue}} | </button>
+            </p>
+            <p>
+              <button id='addComm' ng-click='toggleCommentForm(post)'><i class='fa fa-pencil'></i>Add Comment</button>
+            </p>
+          </div>
+        </div>
+
+        <div ng-show='showComments'>
+          <div ng-repeat='comment in post.comments track by $index' class="comments">
+            <p>
+              {{author}} - {{text}}
+            </p>
+          </div>
+        </div>
+
+        <div ng-show='showNew'>
+          <form name='form2' id='form2' ng-submit='addComment(post, author, text)'>
+            <label for="authorC">Author</label>
+              <input type="text" id="authorC" ng-model="author" placeholder="username" required="">
+            <label for="text">Text</label>
+              <input type="text" id="text" ng-model="text" placeholder="comment text" required="">
+            <input class='com' type="submit" value="Submit">
+          </form>
         </div>
       </div>
-    </p>
+    </div>
 
   </body>
 </html>

@@ -183,3 +183,19 @@ img {
   top: -50px;
   height: 0px;
 }
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.black {
+  color: black;
+}
+
+.fa-reddit-alien {
+  margin-right: 10px;
+}

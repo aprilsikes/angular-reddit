@@ -1,0 +1,9 @@
+{
+  "firebase": "rilsi-reddit",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

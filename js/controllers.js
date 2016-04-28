@@ -1,5 +1,6 @@
 app.controller('MyController', function ($scope) {
   $scope.posts = [];
+  $scope.showDir = true;
   $scope.showForm = false;
   $scope.showNew = false;
   $scope.buttonValue = '0 comments';
@@ -17,6 +18,7 @@ app.controller('MyController', function ($scope) {
 
   $scope.toggleForm = function () {
     $scope.showForm = !$scope.showForm;
+    // $scope.showDir = !$scope.showDir;
   }
 
   $scope.toggleComments = function (post) {

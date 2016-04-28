@@ -13,6 +13,10 @@ body {
   font-weight: lighter;
 }
 
+.dir {
+  color: #979597;
+}
+
 h3 {
   margin-left: 30px;
 }
@@ -157,8 +161,8 @@ img {
   align-items: center;
   max-width: 80%;
 }
-
-.animate-enter,
+/*move*/
+/*.animate-enter,
 .animate-leave
 {
   -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -182,6 +186,74 @@ img {
   opacity: 0;
   top: -50px;
   height: 0px;
+}*/
+
+/*3D rotate*/
+/*.animate-enter,
+.animate-leave {
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+    -webkit-transform: rotateX(90deg) rotateZ(90deg);
+    -moz-transform: rotateX(90deg) rotateZ(90deg);
+    -ms-transform: rotateX(90deg) rotateZ(90deg);
+    -o-transform: rotateX(90deg) rotateZ(90deg);
+    transform: rotateX(90deg) rotateZ(90deg);
+    opacity: 0;
+    height: 0px;
+}
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+    -webkit-transform: rotateX(0deg) rotateZ(0deg);
+    -moz-transform: rotateX(0deg) rotateZ(0deg);
+    -ms-transform: rotateX(0deg) rotateZ(0deg);
+    -o-transform: rotateX(0deg) rotateZ(0deg);
+    transform: rotateX(0deg) rotateZ(0deg);
+    opacity: 1;
+    height: 30px;
+}*/
+
+/*skew*/
+.animate-enter,
+.animate-leave {
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+    -webkit-transform: skewX(45deg) skewY(30deg);
+    -moz-transform: skewX(45deg) skewY(30deg);
+    -ms-transform: skewX(45deg) skewY(30deg);
+    -o-transform: skewX(45deg) skewY(30deg);
+    transform: skewX(45deg) skewY(30deg);
+    opacity: 0;
+    height: 0px;
+}
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+    -webkit-transform: skewX(0deg) skewY(0deg);
+    -moz-transform: skewX(0deg) skewY(0deg);
+    -ms-transform: skewX(0deg) skewY(0deg);
+    -o-transform: skewX(0deg) skewY(0deg);
+    transform: skewX(0deg) skewY(0deg);
+    opacity: 1;
+    height: 30px;
 }
 
 .red {

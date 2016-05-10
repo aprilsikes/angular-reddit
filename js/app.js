@@ -22,7 +22,7 @@
 
   function MyController($scope) {
     /* jshint validthis: true */
-    var vm = this;
+    // var vm = this;
 
     angular.extend($scope, {
 
@@ -50,12 +50,12 @@
       post.comments.push(comment);
       console.log(post.comments);
       post.showComments = false;
-      vm.toggleCommentForm(post);
-      vm.toggleComments(post);
-      if (vm.post.comments.length > 1) {
-        vm.buttonValue = vm.post.comments.length + ' comments';
-      } else if (vm.post.comments.length == 1) {
-        vm.buttonValue = vm.post.comments.length + ' comment';
+      this.toggleCommentForm(post);
+      this.toggleComments(post);
+      if (this.post.comments.length > 1) {
+        this.buttonValue = this.post.comments.length + ' comments';
+      } else if (this.post.comments.length == 1) {
+        this.buttonValue = this.post.comments.length + ' comment';
       }
     }
 
@@ -64,22 +64,22 @@
       post.message = {
         time: new Date()
       };
-      post.image = vm.image;
-      post.title = vm.title;
-      post.author = vm.author;
-      post.description = vm.description;
+      post.image = this.image;
+      post.title = this.title;
+      post.author = this.author;
+      post.description = this.description;
       post.comments = [];
       post.votes = 0;
-      vm.posts.push(post);
-      console.log(vm.posts);
-      vm.showComments = false;
+      this.posts.push(post);
+      console.log(this.posts);
+      this.showComments = false;
       post.showNew = false;
-      vm.toggleForm();
-      vm.toggleComments();
-      vm.title = null;
-      vm.author = null;
-      vm.image = null;
-      vm.description = null;
+      this.toggleForm();
+      this.toggleComments();
+      this.title = null;
+      this.author = null;
+      this.image = null;
+      this.description = null;
     }
 
     function changeColor(post) {
@@ -101,15 +101,15 @@
     };
 
     function toggleCommentForm(post) {
-      vm.showNew = !vm.showNew;
+      this.showNew = !this.showNew;
     }
 
     function toggleComments(post) {
-      vm.showComments = !vm.showComments;
+      this.showComments = !this.showComments;
     }
 
     function toggleForm() {
-      vm.showForm = !vm.showForm;
+      this.showForm = !this.showForm;
     }
 
   }
